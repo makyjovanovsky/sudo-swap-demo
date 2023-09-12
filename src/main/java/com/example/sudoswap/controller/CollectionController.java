@@ -50,8 +50,15 @@ public class CollectionController extends BaseController {
     }
 
     @PostMapping("/collection/delete/{id}")
-    public String deleteCollection(@PathVariable(name = "id") Long id) throws Exception {
-        collectionService.deleteCollection(id);
+    public String deleteCollection(@PathVariable(name = "id") Long id, Model model) throws Exception {
+        try {
+            collectionService.deleteCollection(id);
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+            model.addAttribute("collections", collectionService.findAll());
+            return "collection/list";
+        }
+
         return "redirect:/collection";
     }
 

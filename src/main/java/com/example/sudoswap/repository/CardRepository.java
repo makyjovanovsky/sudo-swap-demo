@@ -14,6 +14,8 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
     List<CardEntity> findAllByUser(UserEntity user);
 
+    List<CardEntity> findAllByCollection(CollectionEntity collection);
+
     Page<CardEntity> findAllBySellFlag(boolean sellFlag, Pageable pageable);
 
     Page<CardEntity> findAllByUser(UserEntity user, Pageable pageable);
@@ -25,6 +27,7 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
     Page<CardEntity> findAllByNameContainingAndSellFlagAndUser(String name, boolean sellFlag, UserEntity user, Pageable pageable);
 
     Page<CardEntity> findAllByCollectionAndSellFlagAndUser(CollectionEntity collection, boolean sellFlag, UserEntity user, Pageable pageable);
+
 
     @Query("SELECT c FROM CardEntity c WHERE c.collection.id IN (SELECT DISTINCT ce.id FROM CollectionEntity ce)")
     List<CardEntity> getOneCardFromEachCollection();
