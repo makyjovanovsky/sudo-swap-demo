@@ -31,7 +31,7 @@ public class DataInitializr {
 
         try {
             Optional<UserEntity> checkUser = userRepository.findByUsername("admin");
-            Optional<UserEntity> checkUser2 = userRepository.findByUsername("mladen");
+            Optional<UserEntity> checkUser2 = userRepository.findByUsername("zlatko");
             if (checkUser.isEmpty()) {
                 UserEntity user = new UserEntity("admin", "admin", "admin", passwordEncoder.encode("admin"), UserRole.ADMIN);
                 WalletEntity walletBTC = new WalletEntity(RandomStringUtils.randomAlphanumeric(42), WalletType.BTC, 0.0F);
